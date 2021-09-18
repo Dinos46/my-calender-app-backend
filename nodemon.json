@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_PW": "dinos",
+    "MONGO_USER": "dinos"
+  }
+}
