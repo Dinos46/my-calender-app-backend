@@ -31,7 +31,6 @@ const addEvent = async (req, res) => {
 const editEvent = async (req, res) => {
     try {
         const ev = await put(req.body);
-        console.log('CON', ev)
         res.send(ev);
     } catch (err) {
         console.error('cant get events somthing went wrong', err)
