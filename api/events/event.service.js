@@ -41,7 +41,8 @@ const put = async (ev) => {
 
 const remove = async (_id) => {
     try {
-        return await Event.findOneAndDelete(_id);
+        const deletedEv = await Event.findOneAndRemove(_id, { new: true });
+        return deletedEv
     } catch (err) {
         console.error('cant remove event', err);
     };

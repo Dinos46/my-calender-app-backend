@@ -40,7 +40,8 @@ const editEvent = async (req, res) => {
 const removeEvent = async (req, res) => {
     try {
         const { _id } = req.params;
-        res.send(remove(_id));
+        const deletedEv = await remove(_id);
+        res.send(deletedEv);
     } catch (err) {
         console.error(`cant remove event ${id} somthing went wrong`, err);
     };
