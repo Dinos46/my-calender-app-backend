@@ -9,14 +9,22 @@ const query = async () => {
     };
 };
 
-const post = async ({ description, date }) => {
+const getById = async (_id) => {
+    try {
+        return await await Event.findById({ _id });
+    } catch (error) {
+        console.error('cant get events', err);
+    };
+};
+
+const post = async ({ description: { description }, date }) => {
     try {
         const ev = new Event({
             _id: new mongoose.Types.ObjectId(),
             description,
             date
         });
-        return await ev.save().exec();
+        return await ev.save();
     } catch (err) {
         console.error('cant add event', err);
     };
@@ -24,15 +32,16 @@ const post = async ({ description, date }) => {
 
 const put = async (ev) => {
     try {
-        return await Event.findByIdAndUpdate(ev._id, { $set: ev }, { new: true });
-    } catch (error) {
+        const eve = await Event.findByIdAndUpdate({ _id: ev._id }, { description: ev.description }, { new: true });
+        return eve
+    } catch (err) {
         console.error('cant edit event', err);
     };
 };
 
 const remove = async (_id) => {
     try {
-        return await Event.remove({ _id }).exec();
+        return await Event.findOneAndDelete(_id);
     } catch (err) {
         console.error('cant remove event', err);
     };
@@ -40,6 +49,7 @@ const remove = async (_id) => {
 
 module.exports = {
     query,
+    getById,
     post,
     put,
     remove

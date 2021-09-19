@@ -1,4 +1,4 @@
-const { post, query, put, remove } = require('./event.service');
+const { post, query, put, remove, getById } = require('./event.service');
 
 const getAllEvents = async (req, res) => {
     try {
@@ -6,6 +6,16 @@ const getAllEvents = async (req, res) => {
         res.send(evs);
     } catch (err) {
         console.error('cant get events somthing went wrong', err);
+    };
+};
+
+const getEvent = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const ev = await getById(_id);
+        res.send(ev);
+    } catch (err) {
+        console.error('cant get event somthing went wrong', err);
     };
 };
 
@@ -20,7 +30,9 @@ const addEvent = async (req, res) => {
 
 const editEvent = async (req, res) => {
     try {
-        res.send(put(req.body));
+        const ev = await put(req.body);
+        console.log('CON', ev)
+        res.send(ev);
     } catch (err) {
         console.error('cant get events somthing went wrong', err)
     };
@@ -28,7 +40,7 @@ const editEvent = async (req, res) => {
 
 const removeEvent = async (req, res) => {
     try {
-        const { _id } = req.body;
+        const { _id } = req.params;
         res.send(remove(_id));
     } catch (err) {
         console.error(`cant remove event ${id} somthing went wrong`, err);
@@ -37,6 +49,7 @@ const removeEvent = async (req, res) => {
 
 module.exports = {
     getAllEvents,
+    getEvent,
     addEvent,
     editEvent,
     removeEvent

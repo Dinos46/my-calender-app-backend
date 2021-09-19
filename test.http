@@ -1,0 +1,41 @@
+@URL = http://localhost:5000/api/event
+
+get {{URL}}
+
+###
+get {{URL}}/id
+Content-Type: application/json
+
+{
+    "_id":"6145ff05de2eb7001570b676"
+}
+
+###
+
+delete {{URL}}/id
+Content-Type: application/json
+
+{
+    "_id":"6146273355449cc66757fd0c"
+}
+
+###
+post {{URL}}
+Content-Type: application/json
+
+{
+    "description":"momov",
+    "date":"9/8/2021"
+}
+
+###
+
+put {{URL}}/id
+Content-Type: application/json
+
+{
+    "_id":"61465b10ec48b0383b25a1a2",
+    "description":"Dinos",
+    "date":"8/8/2021"
+    
+}

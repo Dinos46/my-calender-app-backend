@@ -13,8 +13,8 @@ if (process.env.NODE_ENV === 'production') {
         origin: ['http://127.0.0.1:3000', 'http://localhost:3000'],
         credentials: true
     };
-    app.use(cors(corsOptions));
 };
+app.use(cors());
 
 //set up routes
 const eventRouter = require('./api/events/event.routes');
