@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const query = async () => {
     try {
-        return await Event.find().exec();
+        return await Event.find();
     } catch (error) {
         console.error('cant get events', err);
     };
@@ -41,8 +41,7 @@ const put = async (ev) => {
 
 const remove = async (_id) => {
     try {
-        const deletedEv = await Event.findOneAndRemove(_id, { new: true });
-        return deletedEv
+        await Event.findByIdAndRemove(_id);
     } catch (err) {
         console.error('cant remove event', err);
     };
